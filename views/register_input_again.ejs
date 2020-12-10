@@ -1,0 +1,13 @@
+<%- include('./partials/header.ejs') %>
+
+<% if (value===1) { %>
+    <p>Password and verification code are inconsistent.</p>
+    <a href="http://localhost:7777/auth/registration"><strong>Click to input again!</strong></a>
+<% } %>
+
+<% if (value===2) { %>
+    <p>The email is already reserved.</p>
+    <a href="http://localhost:7777/auth/registration"><strong>Click to input again!</strong></a>
+<% } %>
+
+<%- include('./partials/footer.ejs') %>

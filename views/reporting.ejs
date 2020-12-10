@@ -1,0 +1,58 @@
+
+
+ <%- include('./partials/header.ejs') %>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="row" id="navbarText">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Landing Page">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/reporting">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Report behaviour">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/summary">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Reporting summary">
+        </form>
+        <% if ( ifLogin ) { %> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input type="text" class="btn btn-outline-light my-2 my-sm-0" value="Logged in as <%= email %>">  
+        </form> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Logout!">
+        </form>
+        <% } else{ %>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/login">
+                <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Login">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/registration">
+                <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Register">
+        </form>
+        <% }; %> 
+    </div>
+</nav>
+
+ <h1>Welcome to reporting!</h1>
+<% if ( morning ) { %>
+    <h2>Morning reporting for today has been completed.</h2>
+<% } else{ %>
+    <h2>Morning reporting for today has not been completed.</h2>
+<% }; %>
+<% if ( evening ) { %>
+    <h2>Evening reporting for today has been completed.</h2>
+<% } else{ %>
+    <h2>Evening reporting for today has not been completed.</h2>
+<% }; %>
+<form method="GET" action="/behavior/reporting/morning">
+    <button type="submit" id="morning" >morning</button>
+</form>
+<form method="GET" action="/behavior/reporting/evening">
+    <button type="submit" id="evening" >evening</button>
+</form>
+<form method ="GET" action ="/logout">
+    <button type="submit">Logout!</button>
+</form>
+
+<%- include('./partials/footer.ejs') %>

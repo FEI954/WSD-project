@@ -1,0 +1,135 @@
+<%- include('./partials/header.ejs') %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="row" id="navbarText">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Landing Page">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/reporting">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Report behaviour">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/summary">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Reporting summary">
+        </form>
+        <% if ( ifLogin ) { %> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input type="text" class="btn btn-outline-light my-2 my-sm-0" value="Logged in as <%= email %>">  
+        </form> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Logout!">
+        </form>
+        <% } else{ %>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/login">
+                <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Login">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/registration">
+                <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Register">
+        </form>
+        <% }; %> 
+    </div>
+</nav>
+
+<h1>Evening reporting!</h1> 
+<form method ="GET" action ="/logout">
+    <button type="submit">Logout!</button>
+</form>
+<form method="POST" action="/behavior/reporting/evening">
+    <label for="day">Day: </label>
+    <select id="day" name= "day">
+        <option selected:disabled style="display:none"><%= day %></option>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+    </select>
+    <label for="month">Month: </label>
+    <select id="month" name= "month">
+        <option selected:disabled style="display:none"><%= month %></option>
+        <option value="1">01</option>
+        <option value="2">02</option> 
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+    <label for="year">Year: </label>
+    <select id="year" name= "year">
+        <option selected:disabled style="display:none"><%= year %></option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+    </select>
+    <br>
+    <label for="sportTime">Time spent on sports and exercise(must be a number (can be decimal), and cannot be negative):(hrs) </label>
+    <!--<input type="time" name="sportTime" /> -->
+    <input type="text" id="sportTime" name="sportTime" value="<%= sportTime %>">  
+    <br>
+    <label for="studyTime">Time spent on studying(must be a number (can be decimal), and cannot be negative):(hrs) </label>
+    <!--<input type="time" name="studyTime" /> -->
+    <input type="text" id="studyTime" name="studyTime" value="<%= studyTime %>"> 
+    <br>
+    <label for="eatingQuality">Regularity and quality of eating must be reported using numbers between 1 and 5 (integers): </label>
+    <div id ="eatingQuality">
+        <label class="single"><input type="radio" name="eatingQuality" value="1" />1</label>
+        <label class="single"><input type="radio" name="eatingQuality" value="2" />2</label>
+        <label class="single"><input type="radio" name="eatingQuality" value="3" />3</label>
+        <label class="single"><input type="radio" name="eatingQuality" value="4" />4</label>
+        <label class="single"><input type="radio" name="eatingQuality" value="5" />5</label>
+    </div>
+    <label for="genericMood">Generic mood must be reported using numbers between 1 and 5 (integers): </label>
+    <div id="genericMood">
+        <label class="single"><input type="radio" name="genericMood" value="1" />1</label>
+        <label class="single"><input type="radio" name="genericMood" value="2" />2</label>
+        <label class="single"><input type="radio" name="genericMood" value="3" />3</label>
+        <label class="single"><input type="radio" name="genericMood" value="4" />4</label>
+        <label class="single"><input type="radio" name="genericMood" value="5" />5</label>
+    </div>
+    <input type="submit" value="Submit evening report!" />
+</form>
+
+<% if (errors && errors.length > 0) { %>
+    <ul>
+        <% errors.forEach((error) => { %>
+            <li><%= error %></li>
+        <% }); %>
+    </ul>
+<% } %>
+
+<%- include('./partials/footer.ejs') %>

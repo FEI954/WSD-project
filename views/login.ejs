@@ -1,0 +1,27 @@
+<%- include('./partials/header.ejs') %>
+
+<h1>Login!</h1>
+<form method="POST" action="/auth/login">
+    <label for="email">Email: </label>
+    <input type="email" name="email" />
+    <label for="password">Password: </label>
+    <input type="password" name="password" />
+    <input type="submit" value="Login!" />
+</form>
+
+<!-- <input href="http://localhost:7777//auth/registration" type="button" onclick='jumpToRegistration()' value="registration_form" /> -->
+<!-- <input type="button" onclick='logout()' value="logout" /> -->
+
+<% if (errors && errors.length > 0) { %>
+    <ul>
+        <% errors.forEach((error) => { %>
+            <li><%= error %></li>
+        <% }); %>
+    </ul>
+<% } %>
+
+<br /><p>Haven't an account?</p>
+    <a href="http://localhost:7777/auth/registration"><strong>Click to Register Now!</strong></a>
+
+
+<%- include('./partials/footer.ejs') %>

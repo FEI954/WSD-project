@@ -1,0 +1,59 @@
+<%- include('./partials/header.ejs') %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="row" id="navbarText">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Landing Page">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/reporting">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Report behaviour">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/summary">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Reporting summary">
+        </form>
+        <% if ( ifLogin ) { %> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input type="text" class="btn btn-outline-light my-2 my-sm-0" value="Logged in as <%= email %>">  
+        </form> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Logout!">
+        </form>
+        <% } else{ %>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/login">
+                <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Login">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/registration">
+                <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Register">
+        </form>
+        <% }; %> 
+    </div>
+</nav>
+
+<h1>Welcome to self-monitoring!</h1>
+<p>The application provides users an opportunity to report behavior daily.</p>
+<ul>
+    <li>Sleep duration and sleep quality</li>
+    <li>Time spent on sports and exercise</li>
+    <li>Time spent studying</li>
+    <li>Regularity and quality of eating</li>
+    <li>Generic mood</li>
+</ul>
+
+<a href="http://localhost:7777/behavior/reporting"><strong>Click to report!</strong></a>
+<br>
+<a href="http://localhost:7777/auth/login"><strong>Click to login!</strong></a>
+<br>
+<a href="http://localhost:7777/auth/registration"><strong>Click to Register!</strong></a>
+
+<% if ( ifLogin ) { %> 
+<h3>Average mood for today: <%= averageToday %></h3>
+<h3>Average mood for yesterday: <%= averageYesterday %></h3>
+<h3>Trend:<%= trend %></h3>
+<% } else{ %>
+    <h3>Honey, you are not logged in yet!</h3>
+<% }; %>
+
+<%- include('./partials/footer.ejs') %>

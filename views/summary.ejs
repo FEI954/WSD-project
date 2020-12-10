@@ -1,0 +1,83 @@
+<%- include('./partials/header.ejs') %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="row" id="navbarText">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Landing Page">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/reporting">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Report behaviour">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/behavior/summary">
+            <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Reporting summary">
+        </form>
+        <% if ( ifLogin ) { %> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input type="text" class="btn btn-outline-light my-2 my-sm-0" value="Logged in as <%= email %>">  
+        </form> 
+        <form class="form-inline my-2 my-lg-0" method="GET" action ="/logout">
+            <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Logout!">
+        </form>
+        <% } else{ %>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/login">
+                <input class="btn btn-outline-light my-2 mx-2 my-sm-0" type="submit" value="Login">
+        </form>
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/auth/registration">
+                <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Register">
+        </form>
+        <% }; %> 
+    </div>
+</nav>
+<br>
+<h1>Summary!</h1> 
+<form method="POST" action="/behavior/summary">
+    <fieldset>
+        <label for="frequency">frequency: </label>
+        <select id="frequency" name= "frequency">
+            <option value="Weekly">Weekly average</option>
+            <option value="Monthly">Monthly average</option>
+        </select>
+        <button type="submit" id="search" >search</button>
+    </fieldset>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Weekly Summary</th>
+            <th>Monthly Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Average sleep duration(hrs)</td>
+            <td><%= weekly_data.sleepDuration_average %></td>
+            <td><%= monthly_data.sleepDuration_average %></td>
+        </tr>
+        <tr>
+            <td>Average time spent on sports and exercise(hrs)</td>
+            <td><%= weekly_data.sportTime_average %></td>
+            <td><%= monthly_data.sportTime_average %></td>
+        </tr>
+        <tr>
+            <td>Average time spent on studying(hrs)</td>
+            <td><%= weekly_data.studyTime_average %></td>
+            <td><%= monthly_data.studyTime_average %></td>
+        </tr>
+        <tr>
+              <td>Average sleep quality(LEVEL1-5)</td>
+              <td><%= weekly_data.sleepQuality_average %></td>
+              <td><%= monthly_data.sleepQuality_average %></td>
+        </tr>
+        <tr>
+              <td>Average generic mood(LEVEL1-5)</td>
+              <td><%= weekly_data.genericMood_average %></td>
+              <td><%= monthly_data.genericMood_average %></td>
+        </tr>
+    </tbody>      
+</table>
+<%- include('./partials/footer.ejs') %>
+
+

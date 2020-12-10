@@ -1,2 +1,0 @@
-# WSD-project
-WSD project
